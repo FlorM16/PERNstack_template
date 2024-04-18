@@ -5,9 +5,9 @@ async function main() {
   try {
     await sequelize.sync();
     app.listen(3000);
-    console.log("Conexión establecida correctamente", 3000);
+    console.log("Server on port", 3000);
   } catch (error) {
-    console.log("Error de conexion", error);
+    console.log("Connection error", error);
   }
 }
 
