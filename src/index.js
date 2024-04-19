@@ -3,7 +3,9 @@ import { sequelize } from "./db.js";
 
 async function main() {
   try {
-    await sequelize.sync();
+    await sequelize.sync({ 
+      //force: true 
+    });
     app.listen(3000);
     console.log("Server on port", 3000);
   } catch (error) {

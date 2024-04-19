@@ -3,7 +3,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser"; /*Es un middleware para Express que analiza las cookies adjuntas en las solicitudes HTTP entrantes al backend (solicitudes GET). Permite al backend procesar fácilmente las cookies que se envían desde el cliente frontend (navegador) como parte de las solicitudes HTTP */
 
 import authRoutes from './routes/auth.routes.js'
-
+import taskRoutes from './routes/tasks.routes.js'
 
 //Server
 const app = express();
@@ -17,7 +17,10 @@ app.use(express.json())
 //Express transforma los req.header.cookie en objeto JSON
 app.use(cookieParser())
 
-//Procesa todas las rutas de auth.routes
+//Procesa todas las rutas de auth.routes.js
 app.use('/api',authRoutes)
+
+//Procesa todas las rutas de task.routes.js
+app.use('/api',taskRoutes)
 
 export default app;
