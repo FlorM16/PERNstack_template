@@ -9,8 +9,7 @@ export const createTasks = async (req, res) => {
       title: title,
       description: description,
       userId:
-        req.user
-          ._id /*'req.user' es un dato que viene desde el 'token' descifrado en el middleware 'authRequired' y que se guardó en el 'req'  */,
+        req.user._id /*'req.user' es un dato que viene desde el 'token' descifrado en el middleware 'authRequired' y que se guardó en el 'req'  */,
     });
 
     /*Se guarda el registro en la tabla 'tasks' de la base de datos*/
