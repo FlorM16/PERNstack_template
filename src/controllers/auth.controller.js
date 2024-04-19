@@ -92,8 +92,22 @@ export const logout = (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  res.send('profile')
-  //console.log(req.user)
+
+  /*Nos devuelve un registro en forma de objeto JSON, que coincida con el '_id' del 'payload' del 'token' decodificado en 'authRequired'. */
+  const userFound = await User.findByPk(req.user._id)
+
+  /*Si no encuentra un registro que coincida, nos devuelve un mensaje */
+  if(!userFound) return res.status(400).json({message: "User not found"})
+
+  /*Responde en el frontend los datos del usuario encontrado. */
+  return res.json({
+    _id: userFound._id,
+    username: userFound.username,
+    email: userFound.email,
+    createdAt: userFound.createdAt,
+    updatedAt: userFound.updatedAt,
+  })
+  
 }
 
 
