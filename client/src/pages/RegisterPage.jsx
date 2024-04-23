@@ -4,6 +4,15 @@ import { registerRequest } from "../api/auth";
 function RegisterPage() {
   const { register, handleSubmit } = useForm();
 
+  const onSubmit = handleSubmit(async (values) => {
+    //console.log(values)
+    const res = await registerRequest(
+      values
+    ); /*Importo la funcion definida en 'api/auth.js' y como parámetro 'values' que es el objeto que contiene la informacion ingresada en los 'inputs' */ /*Al hacer la peticion post mediante la funcion 'registerRequest' con los datos req.body = values, recordar que obtendremos un 'res' el cual estamos guardando en una constante de nombre 'res'*/
+    /*Podemos ver esto en la opcion Network de la consola */
+    console.log(res);
+  });
+
   /*register(): Metodo proporcionado por el hook 'useForm'. Se utiliza para registrar 'input' en un formulario y conectarlos con el estado de useForm. Cuando sse registra 'input' se esta indicando a 'react-hook-form' que debe rastrear y manejar ese campo en particular
     Tiene dos argumentos principales:
     - name: El nombre 'string' que le damos al 'input'. Debe ser unico en el formulario y nos servirá para identificar el campo en el estado del formulario.
@@ -13,15 +22,7 @@ function RegisterPage() {
 
   return (
     <div className="bg-zinc-800 max-w-md p-10 rounded-md">
-      <form
-        onSubmit={handleSubmit(async (values) => {
-            console.log(values)
-          const res = await registerRequest(
-            values
-          ); /*Importo la funcion definida en 'api/auth.js' y como parámetro 'values' que es el objeto que contiene la informacion ingresada en los 'inputs' */
-          console.log(res);
-        })}
-      >
+      <form onSubmit={onSubmit}>
         <input
           type="text"
           {...register("username", { required: true })}
